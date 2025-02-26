@@ -1,0 +1,37 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+    color: black
+  }
+  
+  
+  .download-container {
+      background-color: rgb(250, 219, 182);
+      padding: 1rem;
+      border-radius: 1.5rem;
+      margin-bottom: 1rem;
+  }
+  
+  .files-list {
+      border: 1px solid black;
+      width: 400px;
+      height: 300px;
+      border-radius: 0.5rem;
+      overflow: auto;
+      padding: 0.5rem;
+  
+  }
+  
+  .file {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem;
+      border-bottom: 1px solid black;
+  }
+  
+  .download-button {
+      background-color: green;
+      color: white;
+  }
