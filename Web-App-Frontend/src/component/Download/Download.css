@@ -1,37 +1,108 @@
+/* Root Container */
 #root {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
-    color: black
-  }
-  
-  
-  .download-container {
-      background-color: rgb(250, 219, 182);
-      padding: 1rem;
-      border-radius: 1.5rem;
-      margin-bottom: 1rem;
-  }
-  
-  .files-list {
-      border: 1px solid black;
-      width: 400px;
-      height: 300px;
-      border-radius: 0.5rem;
-      overflow: auto;
-      padding: 0.5rem;
-  
-  }
-  
-  .file {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem;
-      border-bottom: 1px solid black;
-  }
-  
-  .download-button {
-      background-color: green;
-      color: white;
-  }
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Download Container */
+.download-container {
+    background: linear-gradient(135deg, rgba(255, 180, 0, 0.9), rgba(255, 95, 0, 0.9));
+    padding: 2rem;
+    border-radius: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+/* Title Styling */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* Files List Container */
+.files-list {
+    border: none;
+    width: 100%;
+    height: 350px;
+    border-radius: 0.75rem;
+    overflow-y: auto;
+    background: #fff;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Individual File Item */
+.file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    background: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.file:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.file b {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Button Styling */
+.download-button {
+    background-color: #4caf50;
+    color: rgb(255, 255, 255);
+    padding: 0.8rem 1.2rem;
+    border-radius: 0.75rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.download-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+/* Error Message */
+.error-message {
+    color: #f44336;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 1.5rem;
+}
+
+/* No Files Available Message */
+.no-files-message {
+    font-size: 1.2rem;
+    color: #000000;
+    font-weight: 400;
+    margin-top: 1.5rem;
+}
+
+/* Scrollbar Styling */
+.files-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.files-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+.files-list::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+}
