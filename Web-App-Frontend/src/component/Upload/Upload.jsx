@@ -1,16 +1,34 @@
+import { useState } from 'react';
 import './Upload.css';
 
-function Upload() {
+const serverUrl = 'http://localhost:5000';
+
+const Upload = ({ onUploadSuccess }) => {
+    const [uploadStatus, setUploadStatus] = useState('');
+
+    const uploadFile = (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const formData = new FormData();
+        formData.append('file', file);
+
+        fetch(`${serverUrl}/upload`, { method: 'POST', body: formData })
+            .then(response => response.json())
+            .then(data => {
+                setUploadStatus(data.message);
+                onUploadSuccess();
+            })
+            .catch(error => console.error('Upload error:', error));
+    };
+
     return (
-      <div className="upload-container">
-        <h1>Upload</h1>
-        <div className="upload-input">
-          <input className='input-button' type="file" style={{fontSize: 'large'}}/>
-          <button className='upload-button'>&uarr;</button>
+        <div className="upload-container">
+            <h2>Upload File</h2>
+            <input type="file" onChange={uploadFile} />
+            <p>{uploadStatus}</p>
         </div>
-        <progress value={0} max={100} style={{ width: "100%" }}></progress>
-      </div>
     );
-}
+};
 
 export default Upload;
