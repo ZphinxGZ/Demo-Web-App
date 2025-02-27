@@ -1,16 +1,6 @@
 .upload-container {
-    background-color: bisque;
-    padding: 1rem;
-    border-radius: 1rem;
-}
-
-.upload-input {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-}
-
-.upload-button {
-    background-color: red;
-    color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
 }
