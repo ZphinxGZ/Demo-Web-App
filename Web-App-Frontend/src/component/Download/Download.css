@@ -1,26 +1,66 @@
 .download-container {
- background-color: lightgoldenrodyellow;
- padding: 1rem;
- border-radius: 0.5rem;
- margin-bottom: 1rem;
-}
-.files-list{
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    width: 400px;
-
-    overflow: auto;
-    height: 300px;
-    padding: 0.5rem;
-}
-
-.file{
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem;
-    border-bottom: 1px solid black;
-}
-.download-button{
-    background-color: green;
+    background-color: #1a237e; /* สีกรมท่า */
     color: white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    margin: 50px auto;
 }
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.files-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.file {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.file:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
+b {
+    font-size: 1.2rem;
+}
+
+.download-button {
+    background: linear-gradient(45deg, #66bb6a, #388e3c); /* สีเขียวสดใส */
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border-radius: 8px; /* มุมโค้งเล็กน้อย */
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease;
+}
+
+.download-button:hover {
+    background: linear-gradient(45deg, #388e3c, #66bb6a); /* สีเขียวเข้มและอ่อนสลับกัน */
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* เพิ่มเงาเล็กน้อย */
+}
+
+a {
+    text-decoration: none;
+}
+
