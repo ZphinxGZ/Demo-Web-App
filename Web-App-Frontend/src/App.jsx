@@ -7,10 +7,14 @@ function App() {
     const [reload, setReload] = useState(false);
 
     return (
-        <>
-            <Upload onUploadSuccess={() => setReload(!reload)} />
-            <Download key={reload} />
-        </>
+        <div className="app-container">
+            <div className="component-box">
+                <Upload onUploadSuccess={() => setReload(!reload)} />
+            </div>
+            <div className="component-box">
+                <Download key={reload} />
+            </div>
+        </div>
     );
 }
 
