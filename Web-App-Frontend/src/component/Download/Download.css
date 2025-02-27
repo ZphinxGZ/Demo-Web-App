@@ -1,7 +1,26 @@
 .download-container {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    text-align: center;
+ background-color: lightgoldenrodyellow;
+ padding: 1rem;
+ border-radius: 0.5rem;
+ margin-bottom: 1rem;
+}
+.files-list{
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    width: 400px;
+
+    overflow: auto;
+    height: 300px;
+    padding: 0.5rem;
+}
+
+.file{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    border-bottom: 1px solid black;
+}
+.download-button{
+    background-color: green;
+    color: white;
 }

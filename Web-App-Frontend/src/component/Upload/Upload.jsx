@@ -1,44 +1,46 @@
-import { useState } from 'react';
-import './Upload.css';
+import React, { useRef } from 'react'
+import axios from 'axios';
+import './Upload.css'
 
-const serverUrl = 'http://localhost:5000';
+function Upload() {
+    const fileRef = useRef();
+    const progressRef = useRef();
+    const uploadClick = () => {
+        if(fileRef.current.files[0] === undefined){
+            return alert('No File Selected')
+        }
 
-const Upload = ({ onUploadSuccess }) => {
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [uploadStatus, setUploadStatus] = useState('');
-
-    const handleFileChange = (event) => {
-        setSelectedFile(event.target.files[0]);
-        setUploadStatus('');
-    };
-
-    const uploadFile = () => {
-        if (!selectedFile) return alert('Please select a file');
-
-        const confirmUpload = window.confirm(`Are you sure you want to upload "${selectedFile.name}"?`);
-        if (!confirmUpload) return;
-
+        //upload file using formdata
         const formData = new FormData();
-        formData.append('file', selectedFile);
+        formData.append('test', fileRef.current.files[0]);
 
-        fetch(`${serverUrl}/upload`, { method: 'POST', body: formData })
-            .then(response => response.json())
-            .then(data => {
-                setUploadStatus(data.message);
-                setSelectedFile(null);
-                onUploadSuccess();
-            })
-            .catch(error => console.error('Upload error:', error));
-    };
+        //axios
+        axios.post('http://localhost:3000/files/upload', formData, {headers: {
+            'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: (progressEvent) => {
+            progressRef.current.value = Math.round(progressEvent.loaded / progressEvent.total * 100);
+        }
+        }).then((res) => {
+            alert('File Uploaded successfully'); 
+        }).catch((err) => {
+            alert('Error uploading file');
+        }).finally(() => {
+            fileRef.current.value = null
+            progressRef.current.value = 0
+        })
+    }
 
-    return (
-        <div className="upload-container">
-            <h2>Upload File</h2>
-            <input type="file" onChange={handleFileChange} />
-            <button onClick={uploadFile} disabled={!selectedFile}>Confirm Upload</button>
-            <p>{uploadStatus}</p>
+  return (
+    <div className='upload-container'>
+        <h1>Upload</h1>
+        <div className='upload-input'>  
+            <input type="file" style={{fontSize: 'large'}} ref={fileRef}/>
+            <button className='upload-button' onClick={uploadClick}>&uarr;</button>
         </div>
-    );
-};
+        <progress className='upload-progress' value={0} max={100} style={{width: '100%'}} ref={progressRef}></progress>
+    </div>
+  )
+}
 
-export default Upload;
+export default Upload

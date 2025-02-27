@@ -1,5 +1,5 @@
 {
-  "name": "web-app-frontend",
+  "name": "filefrontend",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "axios": "^1.8.1",
-    "bootstrap": "^5.3.3",
-    "bootstrap-icons": "^1.11.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
