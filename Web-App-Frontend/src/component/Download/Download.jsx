@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import './Download.css';
 
@@ -6,17 +6,18 @@ const serverUrl = 'http://localhost:5000';
 
 const Download = () => {
     const [files, setFiles] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     // โหลดรายการไฟล์
-    const loadFileList = useCallback(() => {
+    useEffect(() => {
+        setLoading(true); // เริ่มโหลด
         fetch(`${serverUrl}/files`)
             .then(response => response.json())
-            .then(setFiles);
-    }, []);
-
-    useEffect(() => {
-        loadFileList();
-    }, [loadFileList]);
+            .then(setFiles)
+            .catch(err => setError("Failed to load files. Please try again."))
+            .finally(() => setLoading(false)); // จบการโหลด
+    }, []); // คำสั่งนี้จะทำงานเมื่อ component ถูก mount ครั้งแรก
 
     // ฟังก์ชันลบไฟล์
     const handleDelete = (fileName) => {
@@ -33,7 +34,13 @@ const Download = () => {
                 fetch(`${serverUrl}/delete/${fileName}`, { method: 'DELETE' })
                     .then(() => {
                         Swal.fire("Deleted!", `"${fileName}" has been deleted.`, "success");
-                        loadFileList(); // โหลดรายการไฟล์ใหม่
+                        // โหลดรายการไฟล์ใหม่หลังจากลบ
+                        setLoading(true); // เริ่มโหลดใหม่
+                        fetch(`${serverUrl}/files`)
+                            .then(response => response.json())
+                            .then(setFiles)
+                            .catch(() => Swal.fire("Error", "Failed to refresh file list. Please try again.", "error"))
+                            .finally(() => setLoading(false)); // จบการโหลด
                     });
             }
         });
@@ -42,7 +49,16 @@ const Download = () => {
     return (
         <div className="download-container">
             <h2>Files on Server</h2>
-            <button onClick={loadFileList} className="refresh-button">Refresh</button>
+            <button onClick={() => {
+                setLoading(true); // เริ่มโหลดเมื่อกด refresh
+                fetch(`${serverUrl}/files`)
+                    .then(response => response.json())
+                    .then(setFiles)
+                    .catch(() => Swal.fire("Error", "Failed to refresh file list. Please try again.", "error"))
+                    .finally(() => setLoading(false)); // จบการโหลด
+            }} className="refresh-button">Refresh</button>
+            {loading && <p>Loading...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
             <ul>
                 {files.length > 0 ? (
                     files.map(file => (
