@@ -48,7 +48,7 @@ const Download = () => {
 
     return (
         <div className="download-container">
-            <h2>Files on Server</h2>
+            <h2>Files List</h2>
             <button onClick={() => {
                 setLoading(true); // เริ่มโหลดเมื่อกด refresh
                 fetch(`${serverUrl}/files`)
