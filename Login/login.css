@@ -1,0 +1,147 @@
+/* ตั้งค่าพื้นฐาน */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* พื้นหลัง Gradient */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffc369, #f8f8f8);
+}
+
+/* กล่องหลัก */
+.container {
+    display: flex;
+    width: 500px;
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ส่วนสมัครสมาชิก และล็อกอิน */
+.register-box, .login-box {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+}
+
+/* ตั้งค่าแบบแยก */
+.register-box {
+    background: #ffffff;
+}
+
+.login-box {
+    background: linear-gradient(135deg, #ffc369, #f8f8f8);
+    color: white;
+}
+
+/* หัวข้อ */
+h2 {
+    margin-bottom: 15px;
+    font-size: 22px;
+}
+
+/* ช่องกรอกข้อมูล */
+input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* ปุ่ม */
+button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* ปุ่มสมัคร */
+button.register {
+    background: #4a90e2;
+    color: white;
+}
+
+button.register:hover {
+    background: #357ae8;
+}
+
+/* ปุ่มล็อกอิน */
+button.login {
+    background: white;
+    color: #4a90e2;
+    border: 2px solid #4a90e2;
+}
+
+button.login:hover {
+    background: #4a90e2;
+    color: white;
+}
+
+/* ปุ่มโซเชียล */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-icons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* ปุ่ม Google */
+button.google {
+    background: #db4437;
+    color: white;
+}
+
+button.google:hover {
+    background: #c1351d;
+}
+
+/* ปุ่ม Facebook */
+button.facebook {
+    background: #1877f2;
+    color: white;
+}
+
+button.facebook:hover {
+    background: #0e5ba9;
+}
+
+/* ข้อความแสดงผล */
+#user-info {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+/* ปุ่ม Logout */
+button#logout-btn {
+    background: #ff4d4d;
+    color: white;
+    margin-top: 10px;
+}
+
+button#logout-btn:hover {
+    background: #d93636;
+}
