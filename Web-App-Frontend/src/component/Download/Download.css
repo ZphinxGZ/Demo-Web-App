@@ -1,7 +1,14 @@
-.download-container {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
+.delete-button {
+    margin-left: 10px;
+    background-color: #ebeaea;
+    color: white;
+    border: none;
+    padding: 5px 10px;
     border-radius: 5px;
-    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+    background-color: #cc0000;
 }

@@ -36,6 +36,18 @@ app.get('/download/:filename', (req, res) => {
     res.download(filePath);
 });
 
+//  เพิ่ม API สำหรับลบไฟล์
+app.delete('/delete/:filename', (req, res) => {
+    const filename = decodeURIComponent(req.params.filename); // แก้ไขตรงนี้
+    const filePath = path.join(__dirname, 'uploads', filename);
+    
+    fs.unlink(filePath, (err) => {
+        if (err) return res.status(500).json({ message: 'Error deleting file' });
+        res.json({ message: 'File deleted successfully' });
+    });
+});
+
+
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
