@@ -12,3 +12,9 @@
 .delete-button:hover {
     background-color: #cc0000;
 }
+
+.download-container {
+ border: black solid 1px;
+ border-radius: 20px;
+ padding: 10px;
+}
