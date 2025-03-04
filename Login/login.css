@@ -1,147 +1,132 @@
-/* ตั้งค่าพื้นฐาน */
+/* รีเซ็ตค่าเริ่มต้น */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: Arial, sans-serif;
 }
 
-/* พื้นหลัง Gradient */
+/* จัดตำแหน่งตรงกลาง */
 body {
+    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffc369, #f8f8f8);
+    height: 850px;
+    position: relative;
+    background: linear-gradient(135deg, #f5f245, #fdfcdc), url("./Clock.png");
+}
+@keyframes moveBackground {
+    0% {
+        background-position: center center;
+    }
+    50% {
+        background-position: center 10px;
+    }
+    100% {
+        background-position: center center;
+    }
+}
+@keyframes moveImage {
+    0% { transform: translateX(); }
+    50% { transform: translateY(10px); }
+    100% { transform: translateX(0); }
 }
 
-/* กล่องหลัก */
+img {
+    animation: moveImage 2s infinite ease-in-out;
+}
+
+/* กล่องฟอร์ม */
 .container {
     display: flex;
-    width: 500px;
-    background: #ffffff;
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-/* ส่วนสมัครสมาชิก และล็อกอิน */
-.register-box, .login-box {
-    flex: 1;
-    padding: 40px;
-    text-align: center;
-}
-
-/* ตั้งค่าแบบแยก */
-.register-box {
-    background: #ffffff;
-}
-
-.login-box {
-    background: linear-gradient(135deg, #ffc369, #f8f8f8);
-    color: white;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2; /* ทำให้ฟอร์มอยู่เหนือรูปภาพ */
 }
 
 /* หัวข้อ */
 h2 {
-    margin-bottom: 15px;
-    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
 }
 
-/* ช่องกรอกข้อมูล */
+/* กล่องอินพุต */
 input {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
     font-size: 16px;
 }
 
 /* ปุ่ม */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 10px;
+    margin-top: 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
+    color: white;
+    background: #4CAF50;
     transition: 0.3s;
 }
 
-/* ปุ่มสมัคร */
-button.register {
-    background: #4a90e2;
-    color: white;
+button:hover {
+    background: #45a049;
 }
 
-button.register:hover {
-    background: #357ae8;
-}
-
-/* ปุ่มล็อกอิน */
-button.login {
-    background: white;
-    color: #4a90e2;
-    border: 2px solid #4a90e2;
-}
-
-button.login:hover {
-    background: #4a90e2;
-    color: white;
-}
-
-/* ปุ่มโซเชียล */
-.social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+/* ปุ่มสลับระหว่าง Login & Register */
+p {
     margin-top: 15px;
+    font-size: 14px;
 }
 
-.social-icons button {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+p button {
+    background: none;
     border: none;
-    font-size: 20px;
+    color: #007BFF;
+    font-size: 14px;
     cursor: pointer;
-    transition: 0.3s;
+    text-decoration: underline;
 }
 
-/* ปุ่ม Google */
-button.google {
-    background: #db4437;
-    color: white;
+p button:hover {
+    color: #0056b3;
 }
 
-button.google:hover {
-    background: #c1351d;
+/* ซ่อนฟอร์ม Register เริ่มต้น */
+/* เริ่มต้นซ่อน Register Box */
+#register-box {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-/* ปุ่ม Facebook */
-button.facebook {
-    background: #1877f2;
-    color: white;
+/* แสดง Register Box พร้อมอนิเมชั่น */
+#register-box.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+.form-box {
+    background-color: #fdfbe7;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    margin: 40px;
+    width: 400px;
+    text-align: center;
 }
 
-button.facebook:hover {
-    background: #0e5ba9;
-}
-
-/* ข้อความแสดงผล */
-#user-info {
-    margin-top: 20px;
-    font-size: 18px;
-}
-
-/* ปุ่ม Logout */
-button#logout-btn {
-    background: #ff4d4d;
-    color: white;
-    margin-top: 10px;
-}
-
-button#logout-btn:hover {
-    background: #d93636;
+.ClockImage {
+    position: absolute;
+    
+    right: 50;
+    z-index: 1; /* รูปภาพจะอยู่ข้างหลังฟอร์ม */
 }
