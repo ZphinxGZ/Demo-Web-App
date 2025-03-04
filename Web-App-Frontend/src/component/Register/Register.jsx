@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserAndPass from '../../../public/Users';
-import fs from 'fs';
-import path from 'path';
 
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
+    const [isRegistered, setIsRegistered] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isRegistered) {
+            setTimeout(() => navigate('/login'), 2000);
+        }
+    }, [isRegistered, navigate]);
 
     const handleRegister = () => {
         const userExists = UserAndPass.some(user => user.username === username);
@@ -16,10 +21,11 @@ function Register() {
             setMessage('Username already exists');
         } else {
             const newUser = { username: username, password: password };
+            // setMessage("Registration successful.");
             UserAndPass.push(newUser);
-            fs.writeFileSync(path.resolve(__dirname, '../../../public/Users.js'), `const UserAndPass = ${JSON.stringify(UserAndPass)};\n\nexport default UserAndPass;`);
-            setMessage('Registration successful');
-            setTimeout(() => navigate('/login'), 2000);
+            localStorage.setItem('UserAndPass', JSON.stringify(UserAndPass));
+            setMessage('Registration successful. You will be redirected to the login page in 2 seconds.');
+            setIsRegistered(true);
         }
     };
 

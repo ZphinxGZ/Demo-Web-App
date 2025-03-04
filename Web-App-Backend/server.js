@@ -10,6 +10,7 @@ const port = 5000;
 
 app.use(cors());
 app.use(express.static('uploads'));
+app.use(express.json());
 
 const storage = multer.diskStorage({
     destination: 'uploads/',
@@ -47,6 +48,21 @@ app.delete('/delete/:filename', (req, res) => {
     });
 });
 
+app.post('/api/register', (req, res) => {
+    const { username, password } = req.body;
+    const usersFilePath = path.resolve(__dirname, '../Web-App-Frontend/public/Users.js');
+    const users = require(usersFilePath);
+
+    const userExists = users.some(user => user.username === username);
+    if (userExists) {
+        return res.status(400).json({ message: 'Username already exists' });
+    }
+
+    const newUser = { username, password };
+    users.push(newUser);
+    fs.writeFileSync(usersFilePath, `const UserAndPass = ${JSON.stringify(users)};\n\nexport default UserAndPass;`);
+    res.status(200).json({ message: 'Registration successful' });
+});
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
