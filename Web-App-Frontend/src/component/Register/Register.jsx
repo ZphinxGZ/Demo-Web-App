@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import UserAndPass from '../../../public/Users';
+import UserAndPass, { saveUser } from '../../../public/Users';
 
 function Register() {
     const [username, setUsername] = useState('');
@@ -24,6 +24,7 @@ function Register() {
             // setMessage("Registration successful.");
             UserAndPass.push(newUser);
             localStorage.setItem('UserAndPass', JSON.stringify(UserAndPass));
+            saveUser(newUser); // Save user to Users.js
             setMessage('Registration successful. You will be redirected to the login page in 2 seconds.');
             setIsRegistered(true);
         }
