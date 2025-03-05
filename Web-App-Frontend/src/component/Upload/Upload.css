@@ -1,8 +1,9 @@
 .upload-container {
+    border: black solid 1px;
+    border-radius: 20px;
     padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
     text-align: center;
+    font-family:"Prompt", sans-serif;
 }
 
 

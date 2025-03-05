@@ -34,7 +34,7 @@ const Upload = ({ onUploadSuccess }) => {
     return (
         <div className="upload-container">
             <h2>Upload File</h2>
-            <input type="file" onChange={handleFileChange} />
+            <input className="file-upload" type="file" onChange={handleFileChange} />
             <button onClick={uploadFile} disabled={!selectedFile}>Confirm Upload</button>
             <p>{uploadStatus}</p>
         </div>
