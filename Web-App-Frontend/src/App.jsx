@@ -1,7 +1,7 @@
 import './App.css';
 import Download from './component/Download/Download';
 import Upload from './component/Upload/Upload';
-import Login from './Component/Login/Login';
+import Login from './component/Login/Login';
 import Register from './Component/Register/Register';
 import { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -24,6 +24,9 @@ function App() {
                             <div className="component-box">
                                 <Download key={reload} />
                             </div>
+                            <button path="/" onClick={() => setIsLoggedIn(false)}>
+                                Logout
+                            </button>
                         </>
                     ) : (
                         <Navigate to="/login" />

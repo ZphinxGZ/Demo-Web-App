@@ -19,3 +19,11 @@
  padding: 10px;
  font-family:"Prompt", sans-serif;
 }
+.download-link{
+    text-decoration: none;
+    background-color: #ffffff;
+}
+.download-link:hover{
+    background-color: black;
+    color: #ffffff;
+}

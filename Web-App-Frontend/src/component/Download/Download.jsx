@@ -11,7 +11,7 @@ const Download = () => {
 
     // โหลดรายการไฟล์
     useEffect(() => {
-        setLoading(true); // เริ่มโหลด
+        setLoading(true);
         fetch(`${serverUrl}/files`)
             .then(response => response.json())
             .then(setFiles)
@@ -28,12 +28,21 @@ const Download = () => {
             showCancelButton: true,
             confirmButtonColor: "#d33",
             cancelButtonColor: "#3085d6",
-            confirmButtonText: "Yes, delete "
+            confirmButtonText: "Yes, delete ",
+            
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`${serverUrl}/delete/${fileName}`, { method: 'DELETE' })
                     .then(() => {
-                        Swal.fire("Deleted!", `"${fileName}" has been deleted.`, "success");
+                        // Swal.fire("Deleted! success", `"${fileName}" has been deleted.`, "success",);
+                        Swal.fire({
+                            title: "Deleted! Success",
+                            text: `"${fileName}" has been deleted.`,
+                            icon: "success",
+                            didOpen: () => {
+                                document.querySelector('.swal2-title').style.color = 'red';
+                              }
+                        })
                         // โหลดรายการไฟล์ใหม่หลังจากลบ
                         setLoading(true); // เริ่มโหลดใหม่
                         fetch(`${serverUrl}/files`)
@@ -44,6 +53,25 @@ const Download = () => {
                     });
             }
         });
+    };
+    const handleDownload = async (file) => {
+        try {
+            const response = await fetch(`${serverUrl}/download/${file}`, { method: "HEAD" });
+    
+            if (!response.ok) {
+                throw new Error("File not found");
+            }
+    
+            // ถ้าไฟล์มีอยู่ ให้เปิดลิงก์ดาวน์โหลด
+            const downloadLink = document.createElement("a");
+            downloadLink.href = `${serverUrl}/download/${file}`;
+            downloadLink.download = file;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        } catch {
+            Swal.fire("Error", "Failed to download file. Please try again.", "error");
+        }
     };
 
     return (
@@ -59,18 +87,16 @@ const Download = () => {
             }} className="refresh-button">Refresh</button>
             {loading && <p>Loading...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
-            <ul>
-                {files.length > 0 ? (
-                    files.map(file => (
-                        <li key={file}>
-                            <a href={`${serverUrl}/download/${file}`} download>{file}</a>
-                            <button className="delete-button" onClick={() => handleDelete(file)}>❌</button>
-                        </li>
-                    ))
-                ) : (
-                    <p>No files available.</p>
-                )}
-            </ul>
+           <ul>
+        {files.map(file => (
+            <li key={file}>
+                <button className='download-link' onClick={() => handleDownload(file)}>
+                    {file}
+                </button>
+                <button className="delete-button" onClick={() => handleDelete(file)}>❌</button>
+            </li>
+        ))}
+    </ul>
         </div>
     );
 };

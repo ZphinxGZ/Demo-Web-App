@@ -73,3 +73,8 @@ button:last-child {
 button:last-child:hover {
     background: rgba(34, 34, 34, 0.2);
 }
+
+.login-input:hover{
+    border: 2px solid red;
+}
+
