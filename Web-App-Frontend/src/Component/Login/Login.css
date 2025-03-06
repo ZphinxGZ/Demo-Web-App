@@ -9,6 +9,7 @@
     text-align: center;
     width: 400px;
     margin: auto;
+    height: 100%;
 }
 
 h2 {
@@ -63,7 +64,7 @@ button:hover {
 }
 
 button:last-child {
-    background: transparent;
+    background: ;
     border: 2px solid #222;
     color: #222;
     margin-top: 10px;
@@ -76,5 +77,11 @@ button:last-child:hover {
 
 .login-input:hover{
     border: 2px solid red;
+}
+
+.login-page{
+height: 100%  ;
+margin-top: 12rem;
+margin-bottom: 12rem;
 }
 

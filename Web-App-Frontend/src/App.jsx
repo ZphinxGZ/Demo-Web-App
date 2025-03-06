@@ -24,7 +24,7 @@ function App() {
                             <div className="component-box">
                                 <Download key={reload} />
                             </div>
-                            <button path="/" onClick={() => setIsLoggedIn(false)}>
+                            <button path="/" onClick={() => setIsLoggedIn(false)} className="logout-button">
                                 Logout
                             </button>
                         </>

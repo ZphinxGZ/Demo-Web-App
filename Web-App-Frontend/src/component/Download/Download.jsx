@@ -88,14 +88,14 @@ const Download = () => {
             {loading && <p>Loading...</p>}
             {error && <p style={{ color: 'red' }}>{error}</p>}
            <ul>
-        {files.map(file => (
-            <li key={file}>
-                <button className='download-link' onClick={() => handleDownload(file)}>
-                    {file}
-                </button>
-                <button className="delete-button" onClick={() => handleDelete(file)}>❌</button>
-            </li>
-        ))}
+           {files.slice().reverse().map(file => (
+    <li key={file}>
+        <button className='download-link' onClick={() => handleDownload(file)}>
+            {file}
+        </button>
+        <button className="delete-button" onClick={() => handleDelete(file)}>❌</button>
+    </li>
+))}
     </ul>
         </div>
     );

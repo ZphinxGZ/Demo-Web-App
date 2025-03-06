@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 100%;
     text-align: center;
     background: linear-gradient(135deg, #fcec61, #f8f8f8);
 }
@@ -16,4 +16,11 @@
     margin-bottom: 20px;
     width: 400px;
     background-color: #fff;
+}
+
+.logout-button {
+    margin-bottom: 2rem;
+    color: rgb(187, 34, 34) ;
+    width: 10rem;
+    background-color: red;
 }
