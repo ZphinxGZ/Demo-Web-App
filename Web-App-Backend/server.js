@@ -15,7 +15,8 @@ app.use(express.json());
 const storage = multer.diskStorage({
     destination: 'uploads/',
     filename: (req, file, cb) => {
-        cb(null, '[' + Date.now() + ' ms]-' + file.originalname);
+        const timestamp = new Date().toISOString().replace(/:/g, '-').replace('T', ' ').split('.')[0];
+        cb(null, `[${timestamp}]-${file.originalname}`);
     }
 });
 
